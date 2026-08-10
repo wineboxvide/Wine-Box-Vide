@@ -22,11 +22,11 @@ const config = {
   // Identidad del producto
   // -----------------------------------------------------------
   app: {
-    name: "Vibecoding",
+    name: "Wine Box Vide",
     description:
-      "Plantilla del curso Vibe Code con Change and Code. Publica tu landing y usa la IA para construir tu negocio.",
-    domain: "vibecoding.dev", // sin https://, sin www
-    locale: "es", // "es" | "en"
+    "Protegemos lo que hay detrás de cada botella con empaques diseñados para un transporte seguro.",
+    domain: "wineboxvide.com",
+    locale: "es",
     // URL pública: usa NEXT_PUBLIC_APP_URL en .env. En este config solo definimos el default.
     defaultUrl: "http://localhost:3000",
   },
@@ -36,9 +36,9 @@ const config = {
   // -----------------------------------------------------------
   brand: {
     // Color primario en HEX. DaisyUI lo aplica como --color-primary via theme.
-    primary: "#0ea5e9", // sky-500 (azul cielo)
+    primary: "#8B1E3F", // color vino
     // Logo: puede ser texto o ruta a /public/logo.svg
-    logoText: "Vibecoding",
+    logoText: "Wine Box Vide",
     logoSrc: null,
     // Estilo del bordeado global (DaisyUI usa esto para botones, cards)
     radius: "1rem",
@@ -107,18 +107,18 @@ const config = {
   // -----------------------------------------------------------
   landing: {
     nav: [
-      { label: "Características", href: "#features" },
-      { label: "Precios", href: "#pricing" },
-      { label: "Preguntas", href: "#faq" },
-      { label: "Docs", href: "/docs" },
-    ],
+      { label: "Nuestros Kits", href: "#kits" },
+  { label: "¿Cómo funciona?", href: "#como-funciona" },
+  { label: "Preguntas frecuentes", href: "#faq" },
+  { label: "Contacto", href: "#contacto" }
+],
     hero: {
-      eyebrow: "Curso Vibe Code · Change and Code",
-      title: "Publica tu landing y ponle IA a tu negocio.",
+      eyebrow: "Empaques seguros para botellas de vino",
+      title: "Protegemos lo que hay detrás de cada botella.",
       subtitle:
-        "Esta plantilla es tu punto de partida en el curso: página lista para publicar, captura de leads y IA integrada. Tú la haces tuya describiendo lo que quieres — la IA escribe el código.",
-      cta: { label: "Apúntate a la lista", href: "#waitlist" },
-      ctaSecondary: { label: "Ver docs", href: "/docs" },
+      "Diseñamos soluciones de empaque que brindan seguridad, presentación y confianza para el transporte de botellas de vino.",
+      cta: { label: "Quiero cotizar", href: "#waitlist" },
+      ctaSecondary: { label: "Conocer más", href: "#features" },
     },
     problem: {
       eyebrow: "El problema",
