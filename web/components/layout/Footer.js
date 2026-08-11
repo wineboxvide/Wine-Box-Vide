@@ -51,7 +51,7 @@ export default function Footer() {
           <span>
             © {new Date().getFullYear()} {config.brand.logoText}
           </span>
-          <span>Hecho por Pedro Gutiérrez (Roni) · Curso Vibe Code con Change and Code</span>
+          <span>Protegemos lo que hay detrás de cada botella.</span>
         </div>
       </div>
     </footer>
