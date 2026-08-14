@@ -26,13 +26,17 @@ export const metadata = {
     template: `%s · ${config.app.name}`,
   },
   description: config.app.description,
+  applicationName: config.app.name,
   openGraph: {
+    type: "website",
+    locale: "es_MX",
+    siteName: config.app.name,
     title: config.app.name,
     description: config.app.description,
-    type: "website",
-    locale: config.app.locale === "es" ? "es_MX" : "en_US",
   },
-  twitter: { card: "summary_large_image" },
+  twitter: {
+    card: "summary_large_image",
+  },
   icons: { icon: "/favicon.svg" },
 }
 

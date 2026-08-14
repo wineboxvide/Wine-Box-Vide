@@ -3,57 +3,105 @@
 import { revalidatePath } from "next/cache"
 import { createClient } from "@/lib/supabase/server"
 
-// CRUD de core_items vía Server Actions. La RLS de Supabase ya
-// garantiza que cada quien solo toca sus filas; aun así filtramos
-// por user_id como defensa en profundidad.
-
 async function requireUser() {
   const supabase = await createClient()
   const {
     data: { user },
   } = await supabase.auth.getUser()
+
   if (!user) throw new Error("No autenticado")
+
   return { supabase, user }
 }
 
-export async function createItem(formData) {
-  const title = formData.get("title")?.toString().trim()
-  const description = formData.get("description")?.toString().trim() || null
-  if (!title) return
+export async function createProspecto(formData) {
+  const nombreNegocio = formData.get("nombre_negocio")?.toString().trim()
+  const contacto = formData.get("contacto")?.toString().trim() || null
+  const telefono = formData.get("telefono")?.toString().trim() || null
+  const estatus = formData.get("estatus")?.toString().trim() || "nuevo"
+  const notas = formData.get("notas")?.toString().trim() || null
+
+  if (!nombreNegocio) return
 
   const { supabase, user } = await requireUser()
-  await supabase.from("core_items").insert({
+
+  const { error } = await supabase.from("prospectos").insert({
     user_id: user.id,
-    title,
-    description,
+    nombre_negocio: nombreNegocio,
+    contacto,
+    telefono,
+    estatus,
+    notas,
   })
+
+  if (error) {
+    console.error("Error creando prospecto:", error)
+    throw new Error(error.message)
+  }
+
   revalidatePath("/dashboard")
 }
 
-export async function toggleItem(formData) {
+export async function updateProspecto(formData) {
   const id = formData.get("id")?.toString()
-  const status = formData.get("status")?.toString()
-  if (!id) return
+  const nombreNegocio = formData.get("nombre_negocio")?.toString().trim()
+  const contacto = formData.get("contacto")?.toString().trim() || null
+  const telefono = formData.get("telefono")?.toString().trim() || null
+  const estatus = formData.get("estatus")?.toString().trim() || "nuevo"
+  const notas = formData.get("notas")?.toString().trim() || null
 
-  const next = status === "done" ? "active" : "done"
+  if (!id || !nombreNegocio) {
+    throw new Error("Faltan datos para actualizar el prospecto")
+  }
+
   const { supabase, user } = await requireUser()
-  await supabase
-    .from("core_items")
-    .update({ status: next })
+
+  const { data, error } = await supabase
+    .from("prospectos")
+    .update({
+      nombre_negocio: nombreNegocio,
+      contacto,
+      telefono,
+      estatus,
+      notas,
+    })
     .eq("id", id)
     .eq("user_id", user.id)
+    .select()
+    .single()
+
+  console.log("RESULTADO UPDATE:", {
+    data,
+    error,
+    id,
+    userId: user.id,
+  })
+
+  if (error) {
+    console.error("Error actualizando prospecto:", error)
+    throw new Error(error.message)
+  }
+
   revalidatePath("/dashboard")
 }
 
-export async function deleteItem(formData) {
+export async function deleteProspecto(formData) {
   const id = formData.get("id")?.toString()
+
   if (!id) return
 
   const { supabase, user } = await requireUser()
-  await supabase
-    .from("core_items")
+
+  const { error } = await supabase
+    .from("prospectos")
     .delete()
     .eq("id", id)
     .eq("user_id", user.id)
+
+  if (error) {
+    console.error("Error eliminando prospecto:", error)
+    throw new Error(error.message)
+  }
+
   revalidatePath("/dashboard")
 }

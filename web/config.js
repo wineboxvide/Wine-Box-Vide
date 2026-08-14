@@ -45,6 +45,16 @@ const config = {
   },
 
   // -----------------------------------------------------------
+  // Open Graph / redes sociales (WhatsApp, Facebook, LinkedIn, X)
+  // -----------------------------------------------------------
+  social: {
+    title: "Protegemos lo que hay detrás de cada botella.",
+    description:
+      "Diseñamos soluciones de empaque que brindan seguridad, presentación y confianza para el transporte de botellas de vino.",
+    imageAlt: "Wine Box Vide — empaques seguros para botellas de vino",
+  },
+
+  // -----------------------------------------------------------
   // Toggles de features — encienden/apagan rutas y componentes
   // -----------------------------------------------------------
   features: {

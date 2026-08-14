@@ -1,127 +1,222 @@
-import { Check, RotateCcw, Trash2 } from "lucide-react"
+import { Trash2 } from "lucide-react"
 import { createClient } from "@/lib/supabase/server"
-import { createItem, toggleItem, deleteItem } from "./actions"
+import {
+  createProspecto,
+  updateProspecto,
+  deleteProspecto,
+} from "./actions"
 
-export const metadata = { title: "Dashboard" }
+export const metadata = { title: "Prospectos" }
+
+const ESTATUS = [
+  { value: "nuevo", label: "Nuevo" },
+  { value: "contactado", label: "Contactado" },
+  { value: "cotizacion", label: "Cotización" },
+  { value: "cliente", label: "Cliente" },
+  { value: "no_interesado", label: "No interesado" },
+]
+
+function EstatusLabel({ value }) {
+  return ESTATUS.find((item) => item.value === value)?.label || value
+}
 
 export default async function DashboardPage() {
   const supabase = await createClient()
-  const { data: items, error } = await supabase
-    .from("core_items")
+
+  const { data: prospectos, error } = await supabase
+    .from("prospectos")
     .select("*")
     .order("created_at", { ascending: false })
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Tu dashboard</h1>
+        <h1 className="text-2xl font-bold tracking-tight">
+          Mis prospectos
+        </h1>
         <p className="mt-1 text-sm text-base-content/70">
-          CRUD genérico sobre <code>core_items</code>. En Sem 2 lo renombras a
-          tu dominio (leads, recetas, proyectos…).
+          Lleva el seguimiento de tus clientes potenciales de Wine Box Vide.
         </p>
       </div>
 
-      {/* Crear */}
+      {/* Crear prospecto */}
       <form
-        action={createItem}
+        action={createProspecto}
         className="rounded-box border border-base-200 bg-base-100 p-4"
       >
-        <div className="flex flex-col gap-2 sm:flex-row">
+        <h2 className="mb-4 font-semibold">Nuevo prospecto</h2>
+
+        <div className="grid gap-3 md:grid-cols-2">
           <input
-            name="title"
+            name="nombre_negocio"
             required
             maxLength={120}
-            placeholder="Título del item"
-            aria-label="Título del item"
-            className="input input-bordered flex-1"
+            placeholder="Nombre del negocio"
+            aria-label="Nombre del negocio"
+            className="input input-bordered w-full"
           />
+
           <input
-            name="description"
-            maxLength={280}
-            placeholder="Descripción (opcional)"
-            aria-label="Descripción del item"
-            className="input input-bordered flex-1"
+            name="contacto"
+            maxLength={120}
+            placeholder="Persona de contacto"
+            aria-label="Persona de contacto"
+            className="input input-bordered w-full"
           />
-          <button type="submit" className="btn btn-primary">
-            Agregar
-          </button>
+
+          <input
+            name="telefono"
+            maxLength={30}
+            placeholder="WhatsApp / teléfono"
+            aria-label="WhatsApp o teléfono"
+            className="input input-bordered w-full"
+          />
+
+          <select
+            name="estatus"
+            defaultValue="nuevo"
+            aria-label="Estatus"
+            className="select select-bordered w-full"
+          >
+            {ESTATUS.map((item) => (
+              <option key={item.value} value={item.value}>
+                {item.label}
+              </option>
+            ))}
+          </select>
+
+          <textarea
+            name="notas"
+            maxLength={500}
+            placeholder="Notas de seguimiento"
+            aria-label="Notas de seguimiento"
+            className="textarea textarea-bordered w-full md:col-span-2"
+            rows={3}
+          />
+
+          <div className="md:col-span-2">
+            <button type="submit" className="btn btn-primary">
+              Agregar prospecto
+            </button>
+          </div>
         </div>
       </form>
 
       {error && (
         <div className="rounded-lg border border-error/40 bg-error/10 px-4 py-3 text-sm text-error">
-          No pudimos cargar tus items: {error.message}
+          No pudimos cargar tus prospectos: {error.message}
         </div>
       )}
 
       {/* Lista */}
-      {!items?.length ? (
+      {!prospectos?.length ? (
         <div className="rounded-box border border-dashed border-base-300 bg-base-100 px-4 py-12 text-center text-base-content/60">
-          Aún no tienes items. Crea el primero arriba.
+          Aún no tienes prospectos. Agrega el primero arriba.
         </div>
       ) : (
-        <ul className="space-y-2">
-          {items.map((item) => (
-            <li
-              key={item.id}
-              className="flex items-center gap-3 rounded-box border border-base-200 bg-base-100 px-4 py-3"
+        <div className="space-y-4">
+          {prospectos.map((prospecto) => (
+            <div
+              key={prospecto.id}
+              className="rounded-box border border-base-200 bg-base-100 p-4"
             >
-              <div className="min-w-0 flex-1">
-                <p
-                  className={
-                    item.status === "done"
-                      ? "truncate font-medium text-base-content/40 line-through"
-                      : "truncate font-medium"
-                  }
-                >
-                  {item.title}
-                </p>
-                {item.description && (
-                  <p className="truncate text-sm text-base-content/60">
-                    {item.description}
-                  </p>
-                )}
+              {/* Formulario de edición */}
+              <form action={updateProspecto}>
+                <input
+                  type="hidden"
+                  name="id"
+                  value={prospecto.id}
+                />
+
+                <div className="grid gap-3 md:grid-cols-2">
+                  <input
+                    name="nombre_negocio"
+                    required
+                    maxLength={120}
+                    defaultValue={prospecto.nombre_negocio}
+                    className="input input-bordered w-full"
+                    aria-label="Nombre del negocio"
+                  />
+
+                  <input
+                    name="contacto"
+                    maxLength={120}
+                    defaultValue={prospecto.contacto || ""}
+                    placeholder="Persona de contacto"
+                    className="input input-bordered w-full"
+                    aria-label="Persona de contacto"
+                  />
+
+                  <input
+                    name="telefono"
+                    maxLength={30}
+                    defaultValue={prospecto.telefono || ""}
+                    placeholder="WhatsApp / teléfono"
+                    className="input input-bordered w-full"
+                    aria-label="WhatsApp o teléfono"
+                  />
+
+                  <select
+                    name="estatus"
+                    defaultValue={prospecto.estatus}
+                    className="select select-bordered w-full"
+                    aria-label="Estatus"
+                  >
+                    {ESTATUS.map((item) => (
+                      <option key={item.value} value={item.value}>
+                        {item.label}
+                      </option>
+                    ))}
+                  </select>
+
+                  <textarea
+                    name="notas"
+                    maxLength={500}
+                    defaultValue={prospecto.notas || ""}
+                    placeholder="Notas de seguimiento"
+                    className="textarea textarea-bordered w-full md:col-span-2"
+                    rows={3}
+                    aria-label="Notas de seguimiento"
+                  />
+
+                  <div className="flex flex-wrap gap-2 md:col-span-2">
+                    <button
+                      type="submit"
+                      className="btn btn-primary btn-sm"
+                    >
+                      Guardar cambios
+                    </button>
+                  </div>
+                </div>
+              </form>
+
+              {/* Eliminar */}
+              <div className="mt-3 flex items-center justify-between border-t border-base-200 pt-3">
+                <span className="badge badge-ghost">
+                  {EstatusLabel(prospecto.estatus)}
+                </span>
+
+                <form action={deleteProspecto}>
+                  <input
+                    type="hidden"
+                    name="id"
+                    value={prospecto.id}
+                  />
+
+                  <button
+                    type="submit"
+                    className="btn btn-ghost btn-sm text-error"
+                    title="Borrar prospecto"
+                    aria-label={`Borrar ${prospecto.nombre_negocio}`}
+                  >
+                    <Trash2 className="size-4" />
+                    Borrar
+                  </button>
+                </form>
               </div>
-
-              <span
-                className={`badge badge-sm ${
-                  item.status === "done" ? "badge-success" : "badge-ghost"
-                }`}
-              >
-                {item.status}
-              </span>
-
-              <form action={toggleItem}>
-                <input type="hidden" name="id" value={item.id} />
-                <input type="hidden" name="status" value={item.status} />
-                <button
-                  type="submit"
-                  className="btn btn-ghost btn-sm btn-square"
-                  title={item.status === "done" ? "Reabrir" : "Marcar como hecho"}
-                  aria-label={item.status === "done" ? "Reabrir item" : "Marcar como hecho"}
-                >
-                  {item.status === "done" ? (
-                    <RotateCcw className="size-4" />
-                  ) : (
-                    <Check className="size-4" />
-                  )}
-                </button>
-              </form>
-
-              <form action={deleteItem}>
-                <input type="hidden" name="id" value={item.id} />
-                <button
-                  type="submit"
-                  className="btn btn-ghost btn-sm btn-square text-error"
-                  title="Borrar"
-                  aria-label={`Borrar ${item.title}`}
-                >
-                  <Trash2 className="size-4" />
-                </button>
-              </form>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   )
