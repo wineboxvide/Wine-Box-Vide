@@ -43,6 +43,14 @@ const config = {
     // Estilo del bordeado global (DaisyUI usa esto para botones, cards)
     radius: "1rem",
   },
+    // -----------------------------------------------------------
+  // Contacto
+  // -----------------------------------------------------------
+  contact: {
+    whatsapp: "526146012040",
+    whatsappMessage:
+      "Hola, visité la página de Wine Box Vide y me gustaría recibir información sobre sus soluciones de protección para botellas.",
+  },
 
   // -----------------------------------------------------------
   // Open Graph / redes sociales (WhatsApp, Facebook, LinkedIn, X)
@@ -117,11 +125,14 @@ const config = {
   // -----------------------------------------------------------
   landing: {
     nav: [
+      { label: "Inicio", href: "/" },
+      { label: "Soluciones", href: "#soluciones" },
       { label: "Nuestros Kits", href: "#kits" },
-  { label: "¿Cómo funciona?", href: "#como-funciona" },
-  { label: "Preguntas frecuentes", href: "#faq" },
-  { label: "Contacto", href: "#contacto" }
-],
+      { label: "¿Cómo usarías Wine Box?", href: "#para-empresas" },
+      { label: "Cómo funciona", href: "#como-funciona" },
+      { label: "Nosotros", href: "#nosotros" },
+      { label: "Contacto", href: "#contacto" },
+    ],
     hero: {
       eyebrow: "Empaques seguros para botellas de vino",
       title: "Protegemos lo que hay detrás de cada botella.",
@@ -130,72 +141,62 @@ const config = {
       cta: { label: "Quiero cotizar", href: "#waitlist" },
       ctaSecondary: { label: "Conocer más", href: "#features" },
     },
-    problem: {
-      eyebrow: "El problema",
-      title: "El vidrio no perdona un mal empaque",
-      subtitle:
-        "En el transporte y almacenaje, el punto débil casi nunca es el producto: es lo que lo rodea.",
-      items: [
-        {
-          icon: "Wine",
-          title: "Botellas rotas",
-          body: "Cada envío dañado es producto perdido, flete pagado y utilidad que se evapora.",
-        },
-        {
-          icon: "PackageX",
-          title: "Devoluciones",
-          body: "Reposiciones, reenvíos y horas de tu equipo resolviendo lo que no debió romperse.",
-        },
-        {
-          icon: "Frown",
-          title: "Mala experiencia",
-          body: "El cliente final recibe una caja mojada y ese recuerdo pesa más que tu etiqueta.",
-        },
-        {
-          icon: "Award",
-          title: "Imagen de marca",
-          body: "Una botella rota vale mucho más que su precio: golpea la reputación que construiste.",
-        },
-      ],
+   problem: {
+  eyebrow: "El problema",
+  title: "¿Sabe cuánto cuesta realmente una botella rota?",
+  subtitle:
+    "Una botella dañada puede convertirse en pérdidas, reposiciones y una mala experiencia para tu cliente.",
+  items: [
+    {
+      icon: "PackageX",
+      title: "Mermas de inventario",
+      body: "Producto dañado que deja de cumplir su venta o entrega esperada.",
     },
-    features: {
-      eyebrow: "Nuestra solución",
-      title: "Una solución creada para proteger productos de alto valor",
-      subtitle:
-        "Una botella representa más que un producto: representa una experiencia, una historia y el esfuerzo detrás de cada marca. En Wine Box Vide creamos soluciones de protección que ayudan a reducir riesgos durante el transporte y envío, permitiendo que vinos y bebidas premium lleguen en perfectas condiciones hasta el cliente final.",
-      items: [
-        {
-          icon: "ShieldCheck",
-          title: "Amortiguación real",
-          body: "El golpe se disipa en la estructura, no en tu producto.",
-        },
-        {
-          icon: "Gem",
-          title: "Presentación premium",
-          body: "Sin plásticos ni unicel.",
-        },
-        {
-          icon: "Package",
-          title: "Fácil almacenamiento y armado",
-          body: "Se envía plano, ocupa poco almacén y se arma sin herramientas.",
-        },
-        {
-          icon: "Wine",
-          title: "Protección durante el transporte",
-          body: "Estructura que absorbe impactos y reduce el riesgo de roturas en el envío.",
-        },
-        {
-          icon: "Boxes",
-          title: "Fácil armado y almacenamiento",
-          body: "Diseño armable que se monta en minutos y se guarda plano hasta su uso.",
-        },
-        {
-          icon: "Layers",
-          title: "Solución para diferentes presentaciones",
-          body: "Kits para 1, 2, 6 y 12 botellas según la necesidad de cada negocio.",
-        },
-      ],
+    {
+      icon: "TrendingDown",
+      title: "Pérdidas económicas",
+      body: "Reposiciones, nuevo empaque, logística y reenvíos pueden aumentar el costo.",
     },
+    {
+      icon: "UserRoundX",
+      title: "Experiencia del cliente",
+      body: "Recibir una botella dañada genera molestias, espera y pérdida de confianza.",
+    },
+    {
+      icon: "ShieldAlert",
+      title: "Imagen de marca",
+      body: "Un mal envío puede terminar afectando la percepción de tu negocio.",
+    },
+  ],
+},
+features: {
+  eyebrow: "Nuestra solución",
+  title: "Una solución creada para proteger productos de alto valor",
+  subtitle:
+    "Protección funcional para botellas de vidrio durante su manipulación, transporte y envío.",
+  items: [
+    {
+      icon: "ShieldCheck",
+      title: "Protección y amortiguación",
+      body: "Su estructura ayuda a absorber y distribuir impactos durante el transporte.",
+    },
+    {
+      icon: "Gem",
+      title: "Presentación profesional",
+      body: "Una solución de cartón corrugado que protege sin recurrir a plásticos ni unicel.",
+    },
+    {
+      icon: "Package",
+      title: "Armable y fácil de almacenar",
+      body: "Se almacena plano y se arma fácilmente sin herramientas.",
+    },
+    {
+      icon: "Layers",
+      title: "Soluciones para diferentes necesidades",
+      body: "Opciones para 1, 2, 6 y 12 botellas, además de requerimientos especiales.",
+    },
+  ],
+},
     differentiator: {
       eyebrow: "Diferenciador",
       title: "¿Por qué Wine Box Vide?",
@@ -235,39 +236,39 @@ const config = {
       ],
     },
     faq: {
-        eyebrow: "Preguntas frecuentes",
-        title: "Todo lo que necesitas saber antes de hacer tu pedido.",
-        items: [
-          {
-            q: "¿Puedo personalizar el empaque con mi marca?",
-            a: "Sí. Trabajamos impresión y personalización de la caja exterior con tu logotipo e identidad. La personalización aplica a partir de pedidos por volumen; lo cotizamos por WhatsApp según tiraje.",
-          },
-          {
-            q: "¿Qué tipo de botellas son compatibles?",
-            a: "Nuestros insertos están diseñados para proteger botellas de vino, mezcal y otras bebidas premium. Si tu producto tiene un tamaño o presentación especial, contáctanos y con gusto te orientaremos sobre la mejor opción para tu negocio.",
-          },
-          {
-            q: "¿Qué ventajas ofrece el inserto protector de Wine Box Vide?",
-            a: "Nuestro inserto protector está diseñado para brindar mayor seguridad durante el transporte de botellas de vino, mezcal y otras bebidas premium. Su diseño armable proporciona estabilidad, ayuda a reducir el riesgo de daños, mejora la presentación del producto y se adapta a diferentes capacidades, ofreciendo una solución práctica y profesional para negocios que comercializan y envían botellas. En Wine Box Vide no solo vendemos un empaque; vendemos seguridad en el transporte.",
-          },
-          {
-            q: "¿Hacen envíos a todo México?",
-            a: "Sí, enviamos a toda la República Mexicana mediante paqueterías confiables.",
-          },
-          {
-            q: "¿Cuáles son los tiempos de entrega?",
-            a: "Los tiempos de entrega dependen del tipo de pedido. Para pedidos por volumen o personalizados, el tiempo estimado es de 7 a 12 días hábiles, dependiendo de la cantidad solicitada y del destino de envío.",
-          },
-          {
-            q: "¿Emiten factura?",
-            a: "Sí, facturamos todos los pedidos. Solo necesitamos tu constancia de situación fiscal y el uso de CFDI al confirmar la compra.",
-          },
-          {
-            q: "¿Cómo realizo un pedido?",
-            a: "Escríbenos por WhatsApp. Cuéntanos qué tipo de botella deseas proteger. Te recomendamos la mejor solución. Te enviamos tu cotización. Confirmamos tu pedido y programamos el envío. Una vez que conozcamos tus necesidades, te recomendaremos la mejor solución para proteger tus botellas y te enviaremos una cotización personalizada.",
-          },
-        ],
-      },
+  eyebrow: "Preguntas frecuentes",
+  title: "Todo lo que necesitas saber antes de hacer tu pedido.",
+  items: [
+    {
+      q: "¿Puedo personalizar el empaque con mi marca?",
+      a: "Actualmente, Wine Box Vide se especializa en la solución de protección mediante nuestros insertos. Si tu proyecto requiere características específicas de presentación o identificación, cuéntanos tu necesidad y revisaremos contigo las alternativas disponibles.",
+    },
+    {
+      q: "¿Qué tipo de botellas son compatibles?",
+      a: "Nuestros insertos están diseñados para proteger botellas de vidrio utilizadas en vinos, mezcales, sotoles y otras bebidas. Si tu producto tiene una forma, tamaño o presentación diferente, contáctanos para conocer sus características y orientarte sobre la solución más adecuada para tu negocio.",
+    },
+    {
+      q: "¿Qué ventajas ofrece el inserto protector de Wine Box Vide?",
+      a: "Nuestro inserto protector está diseñado para brindar mayor seguridad durante la manipulación y el transporte de botellas de vidrio. Su estructura armable ayuda a mantener la botella firme y sus cámaras de aire contribuyen a absorber impactos y reducir el riesgo de daños. Además, se entrega plano, se arma sin herramientas y está fabricado en cartón corrugado, ofreciendo una solución funcional para negocios que comercializan, entregan y envían botellas. En Wine Box Vide no solo vendemos un empaque; vendemos seguridad en el transporte.",
+    },
+    {
+      q: "¿Hacen envíos a todo México?",
+      a: "Sí. Realizamos envíos a toda la República Mexicana mediante servicios de paquetería confiables.",
+    },
+    {
+      q: "¿Cuáles son los tiempos de entrega?",
+      a: "Los tiempos de entrega dependen de las características y el volumen de cada pedido. Para pedidos por volumen, el tiempo estimado es de 7 a 12 días hábiles, dependiendo de la cantidad solicitada y del destino de envío.",
+    },
+    {
+      q: "¿Emiten factura?",
+      a: "Sí. Emitimos factura por nuestros pedidos. Para la facturación solicitamos los datos fiscales correspondientes al momento de confirmar el pedido.",
+    },
+    {
+      q: "¿Cómo realizo un pedido?",
+      a: "El proceso es sencillo: 1) Contáctanos por WhatsApp, formulario o a través de nuestro asistente en línea. 2) Cuéntanos qué producto y tipo de botella necesitas proteger. 3) Indícanos la cantidad aproximada que requieres. 4) Revisamos tu necesidad y te recomendamos la solución más adecuada. 5) Te enviamos una cotización. 6) Al confirmar el pedido, coordinamos producción, facturación y envío. Cada negocio tiene necesidades diferentes, por eso buscamos conocer tu operación antes de recomendarte una solución.",
+    },
+  ],
+},
     
       finalCta: {
         eyebrow: "Protege tus botellas",
@@ -316,71 +317,43 @@ const config = {
   // El cobro real (PayPal.me) depende de features.paypal.
   // -----------------------------------------------------------
   pricing: {
-    eyebrow: "Nuestros Kits",
-    title: "Soluciones para proteger tus botellas.",
-    subtitle:
-      "Elige la opción que mejor se adapte a tu producto y a las necesidades de tu negocio.",
-    plans: [
-      {
-        id: "kit-1",
-        name: "Kit 1 botella",
-        price: "Cotizar",
-currency: "",
-interval: "",
-        description: "Protección individual para una botella.",
-        features: [
-          "Inserto protector armable",
-          "Diseñado para transporte seguro",
-          "Ideal para regalos y entregas",
-        ],
-        cta: "Quiero cotizar",
-      },
-      {
-        id: "kit-2",
-        name: "Kit Duo",
-        price: "Cotizar",
-currency: "",
-interval: "",
-        description: "Solución para transportar dos botellas.",
-        features: [
-          "Inserto protector para 2 botellas",
-          "Diseño práctico y armable",
-          "Ideal para presentaciones especiales",
-        ],
-        cta: "Quiero cotizar",
-        highlighted: true,
-      },
-      {
-        id: "kit-6",
-        name: "Kit 6 botellas",
-        price: "Cotizar",
-currency: "",
-interval: "",
-        description: "Protección para pedidos de mayor volumen.",
-        features: [
-          "Protección para 6 botellas",
-          "Ahorro de espacio al almacenarse",
-          "Ideal para envíos y distribución",
-        ],
-        cta: "Quiero cotizar",
-      },
-      {
-        id: "kit-12",
-        name: "Kit Master",
-        price: "Cotizar",
-currency: "",
-interval: "",
-        description: "Solución para transportar hasta 12 botellas.",
-        features: [
-          "Protección para 12 botellas",
-          "Diseñado para operaciones de mayor volumen",
-          "Ideal para bodegas y distribuidores",
-        ],
-        cta: "Quiero cotizar",
-      },
-    ],
+   eyebrow: "Nuestros Kits",
+title: "Soluciones para diferentes necesidades de envío",
+  subtitle: "Protección y practicidad para diferentes necesidades de envío.",
+plans: [
+  {
+    id: "kit-1",
+    name: "Kit Premium",
+    capacity: "1 botella",
+          description: "Ideal para envíos individuales, regalos y ventas en línea.",
+    cta: "Solicitar cotización",
+  },
+  {
+    id: "kit-2",
+    name: "Kit Duo",
+    capacity: "2 botellas",
+          description: "Una solución práctica para selecciones, regalos y entregas especiales.",
+    cta: "Solicitar cotización",
+  },
+  {
+    id: "kit-6",
+    name: "Kit 6 botellas",
+    capacity: "6 botellas",
+         description: "Pensado para vinícolas, tiendas y envíos de varias botellas.",
+    cta: "Solicitar cotización",
+  },
+  {
+    id: "kit-12",
+    name: "Kit Master",
+    capacity: "12 botellas",
+    description: "Diseñado para distribución, pedidos por volumen y operaciones comerciales.",
+    cta: "Solicitar cotización",
+  },
+],
   },
 }
+ 
+
 
 export default config
 

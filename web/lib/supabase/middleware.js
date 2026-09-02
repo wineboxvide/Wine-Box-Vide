@@ -50,23 +50,36 @@ export async function updateSession(request) {
     }
   )
 
-  // IMPORTANTE: no metas lógica entre createServerClient y getUser().
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+ // IMPORTANTE: no metas lógica entre createServerClient y getUser().
+const {
+  data: { user },
+} = await supabase.auth.getUser()
 
   const { pathname } = request.nextUrl
   const isProtected = PROTECTED_PREFIXES.some((p) => pathname.startsWith(p))
 
-  if (isProtected && !user) {
-    const url = request.nextUrl.clone()
-    url.pathname = config.auth.loginUrl
-    url.searchParams.set("next", pathname)
-    return NextResponse.redirect(url)
-  }
+ const adminEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase()
+const isAdmin =
+  !!user?.email &&
+  !!adminEmail &&
+  user.email.toLowerCase() === adminEmail
 
-  // Si ya hay sesión y va a /login, mándalo al dashboard.
-  if (user && pathname === config.auth.loginUrl) {
+if (isProtected && !user) {
+  const url = request.nextUrl.clone()
+  url.pathname = config.auth.loginUrl
+  url.searchParams.set("next", pathname)
+  return NextResponse.redirect(url)
+}
+
+if (isProtected && user && !isAdmin) {
+  const url = request.nextUrl.clone()
+  url.pathname = "/"
+  url.search = ""
+  return NextResponse.redirect(url)
+}
+
+  // Si es la cuenta administradora y va a /login, mándala al dashboard.
+  if (isAdmin && pathname === config.auth.loginUrl) {
     const url = request.nextUrl.clone()
     url.pathname = config.auth.afterLoginUrl
     return NextResponse.redirect(url)

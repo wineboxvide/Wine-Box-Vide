@@ -16,29 +16,46 @@ export async function GET(request) {
 
   if (code) {
     const supabase = await createClient()
+
     const { error } = await supabase.auth.exchangeCodeForSession(code)
+
     if (!error) {
-      // Bienvenida solo en el primer login. Best-effort, post-respuesta.
-      after(async () => {
-        const {
-          data: { user },
-        } = await supabase.auth.getUser()
-        if (!user?.email) return
+      // Obtenemos el usuario ANTES de enviar la respuesta.
+      const {
+        data: { user },
+      } = await supabase.auth.getUser()
+
+      if (user?.email) {
         const created = new Date(user.created_at).getTime()
         const lastSignIn = new Date(
           user.last_sign_in_at || user.created_at
         ).getTime()
-        if (Math.abs(lastSignIn - created) < FIRST_LOGIN_WINDOW_MS) {
-          const meta = user.user_metadata || {}
-          await sendWelcome(user.email, meta.full_name || meta.name || "")
-        }
-      })
 
-      // En prod detrás de proxy (Vercel), respeta el host reenviado.
+        const isFirstLogin =
+          Math.abs(lastSignIn - created) < FIRST_LOGIN_WINDOW_MS
+
+        if (isFirstLogin) {
+          const meta = user.user_metadata || {}
+          const name = meta.full_name || meta.name || ""
+
+          // El email sí puede enviarse después de responder,
+          // porque ya no toca la sesión de Supabase.
+          after(() => sendWelcome(user.email, name))
+        }
+      }
+
+      // En desarrollo usamos el origin local.
       const forwardedHost = request.headers.get("x-forwarded-host")
       const isLocal = process.env.NODE_ENV === "development"
-      if (isLocal) return NextResponse.redirect(`${origin}${next}`)
-      if (forwardedHost) return NextResponse.redirect(`https://${forwardedHost}${next}`)
+
+      if (isLocal) {
+        return NextResponse.redirect(`${origin}${next}`)
+      }
+
+      if (forwardedHost) {
+        return NextResponse.redirect(`https://${forwardedHost}${next}`)
+      }
+
       return NextResponse.redirect(`${origin}${next}`)
     }
   }

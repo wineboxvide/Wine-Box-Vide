@@ -28,15 +28,71 @@ export default async function DashboardPage() {
     .select("*")
     .order("created_at", { ascending: false })
 
+  const totalProspectos = prospectos?.length || 0
+
+  const inicioSemana = new Date()
+  const diaSemana = inicioSemana.getDay()
+  const diasDesdeLunes = diaSemana === 0 ? 6 : diaSemana - 1
+
+  inicioSemana.setDate(
+    inicioSemana.getDate() - diasDesdeLunes
+  )
+  inicioSemana.setHours(0, 0, 0, 0)
+
+  const nuevosEstaSemana =
+    prospectos?.filter(
+      (prospecto) =>
+        new Date(prospecto.created_at) >= inicioSemana
+    ).length || 0
+
+  const clientes =
+    prospectos?.filter(
+      (prospecto) => prospecto.estatus === "cliente"
+    ).length || 0
+
   return (
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold tracking-tight">
           Mis prospectos
         </h1>
+
         <p className="mt-1 text-sm text-base-content/70">
           Lleva el seguimiento de tus clientes potenciales de Wine Box Vide.
         </p>
+      </div>
+
+      {/* Resumen */}
+      <div className="grid gap-3 md:grid-cols-3">
+        <div className="rounded-box border border-base-200 bg-base-100 p-4">
+          <div className="text-sm text-base-content/60">
+            Total de prospectos
+          </div>
+
+          <div className="mt-1 text-2xl font-bold">
+            {totalProspectos}
+          </div>
+        </div>
+
+        <div className="rounded-box border border-base-200 bg-base-100 p-4">
+          <div className="text-sm text-base-content/60">
+            Nuevos esta semana
+          </div>
+
+          <div className="mt-1 text-2xl font-bold">
+            {nuevosEstaSemana}
+          </div>
+        </div>
+
+        <div className="rounded-box border border-base-200 bg-base-100 p-4">
+          <div className="text-sm text-base-content/60">
+            Clientes
+          </div>
+
+          <div className="mt-1 text-2xl font-bold">
+            {clientes}
+          </div>
+        </div>
       </div>
 
       {/* Crear prospecto */}
@@ -44,7 +100,9 @@ export default async function DashboardPage() {
         action={createProspecto}
         className="rounded-box border border-base-200 bg-base-100 p-4"
       >
-        <h2 className="mb-4 font-semibold">Nuevo prospecto</h2>
+        <h2 className="mb-4 font-semibold">
+          Nuevo prospecto
+        </h2>
 
         <div className="grid gap-3 md:grid-cols-2">
           <input
@@ -79,7 +137,10 @@ export default async function DashboardPage() {
             className="select select-bordered w-full"
           >
             {ESTATUS.map((item) => (
-              <option key={item.value} value={item.value}>
+              <option
+                key={item.value}
+                value={item.value}
+              >
                 {item.label}
               </option>
             ))}
@@ -95,7 +156,10 @@ export default async function DashboardPage() {
           />
 
           <div className="md:col-span-2">
-            <button type="submit" className="btn btn-primary">
+            <button
+              type="submit"
+              className="btn btn-primary"
+            >
               Agregar prospecto
             </button>
           </div>
@@ -163,7 +227,10 @@ export default async function DashboardPage() {
                     aria-label="Estatus"
                   >
                     {ESTATUS.map((item) => (
-                      <option key={item.value} value={item.value}>
+                      <option
+                        key={item.value}
+                        value={item.value}
+                      >
                         {item.label}
                       </option>
                     ))}

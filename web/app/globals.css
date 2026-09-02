@@ -199,3 +199,97 @@ h4,
 .prose-vf hr {
   @apply my-8 border-base-300;
 }
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes heroZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.hero-reveal {
+  opacity: 0;
+  animation: heroFadeUp 0.7s ease-out forwards;
+}
+
+.hero-reveal-delay-1 {
+  animation-delay: 0.12s;
+}
+
+.hero-reveal-delay-2 {
+  animation-delay: 0.24s;
+}
+
+.hero-reveal-delay-3 {
+  animation-delay: 0.36s;
+}
+
+.hero-reveal-delay-4 {
+  animation-delay: 0.48s;
+}
+
+.hero-image-reveal {
+  opacity: 0;
+  animation: heroZoomIn 0.9s ease-out 0.18s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-reveal,
+  .hero-image-reveal {
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
+}
+@keyframes proofCtaPulse {
+  0%, 70%, 100% {
+    box-shadow: 0 0 0 0 rgba(242, 199, 92, 0);
+    transform: translateY(0);
+  }
+
+  80% {
+    box-shadow: 0 0 0 8px rgba(242, 199, 92, 0.14);
+    transform: translateY(-2px);
+  }
+
+  90% {
+    box-shadow: 0 0 0 14px rgba(242, 199, 92, 0);
+    transform: translateY(0);
+  }
+}
+
+.proof-cta {
+  animation: proofCtaPulse 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proof-cta {
+    animation: none;
+  }
+}

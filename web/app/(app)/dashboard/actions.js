@@ -43,6 +43,7 @@ export async function createProspecto(formData) {
 }
 
 export async function updateProspecto(formData) {
+  console.log("=== UPDATE PROSPECTO SE EJECUTÓ ===") 
   const id = formData.get("id")?.toString()
   const nombreNegocio = formData.get("nombre_negocio")?.toString().trim()
   const contacto = formData.get("contacto")?.toString().trim() || null
