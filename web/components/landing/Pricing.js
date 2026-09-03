@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import config from "@/config"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 const KIT_IMAGES = {
   "kit-1": "/images/kit-premium.png",
@@ -16,26 +18,129 @@ export default function Pricing() {
   const { eyebrow, title, subtitle, plans } = config.pricing
   const sectionRef = useRef(null)
   const [visible, setVisible] = useState(false)
+useEffect(() => {
+  const section = sectionRef.current
+  if (!section) return
 
-  useEffect(() => {
-    const section = sectionRef.current
-    if (!section) return
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        setVisible(true)
+        observer.disconnect()
+      }
+    },
+    { threshold: 0.2 }
+  )
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true)
-          observer.disconnect()
-        }
+  observer.observe(section)
+
+  return () => observer.disconnect()
+}, [])
+useEffect(() => {
+  gsap.registerPlugin(ScrollTrigger)
+
+  const photo = sectionRef.current?.querySelector(".kit-photo")
+
+  if (!photo) return
+
+  const animation = gsap.fromTo(
+    photo,
+    {
+      scale: 0.82,
+      borderRadius: "24px",
+    },
+    {
+      scale: 1,
+      borderRadius: "12px",
+      ease: "none",
+      scrollTrigger: {
+        trigger: photo,
+        start: "top 90%",
+        end: "top 55%",
+        scrub: 1,
       },
-      { threshold: 0.2 }
+    }
+  )
+
+  return () => {
+    animation.scrollTrigger?.kill()
+    animation.kill()
+  }
+}, [])
+useEffect(() => {
+  gsap.registerPlugin(ScrollTrigger)
+
+  const button = sectionRef.current?.querySelector(".kit-cta-featured")
+
+  if (!button) return
+
+  const animation = gsap.fromTo(
+    button,
+    {
+      scale: 0.82,
+      y: 20,
+      boxShadow: "0 0 0 rgba(0,0,0,0)",
+    },
+    {
+      scale: 1.08,
+      y: 0,
+      boxShadow: "0 14px 30px rgba(139, 30, 63, 0.28)",
+      ease: "none",
+      scrollTrigger: {
+        trigger: button,
+        start: "top 92%",
+        end: "top 65%",
+        scrub: 1,
+      },
+    }
+  )
+
+  return () => {
+    animation.scrollTrigger?.kill()
+    animation.kill()
+  }
+}, [])
+useEffect(() => {
+  gsap.registerPlugin(ScrollTrigger)
+
+  const buttons = sectionRef.current?.querySelectorAll(".kit-cta-featured")
+
+  if (!buttons?.length) return
+
+  const animations = []
+
+  buttons.forEach((button) => {
+    const animation = gsap.fromTo(
+      button,
+      {
+        scale: 0.82,
+        y: 20,
+        boxShadow: "0 0 0 rgba(0,0,0,0)",
+      },
+      {
+        scale: 1.08,
+        y: 0,
+        boxShadow: "0 14px 30px rgba(139, 30, 63, 0.28)",
+        ease: "none",
+        scrollTrigger: {
+          trigger: button,
+          start: "top 92%",
+          end: "top 65%",
+          scrub: 1,
+        },
+      }
     )
 
-    observer.observe(section)
+    animations.push(animation)
+  })
 
-    return () => observer.disconnect()
-  }, [])
-
+  return () => {
+    animations.forEach((animation) => {
+      animation.scrollTrigger?.kill()
+      animation.kill()
+    })
+  }
+}, [])
   return (
    <section
   ref={sectionRef}
@@ -68,23 +173,20 @@ export default function Pricing() {
         visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       }`}
     >
-     <div className="group/image relative mb-5 aspect-square overflow-hidden rounded-xl bg-base-200">
+     <div
+  className={`kit-photo group/image relative mb-5 aspect-square overflow-hidden rounded-xl bg-base-200 ${
+    i === 0 ? "kit-photo-featured" : ""
+  }`}
+>
   <Image
     src={KIT_IMAGES[plan.id]}
     alt={`${plan.name} - ${plan.capacity}`}
     fill
-    className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+    className="object-cover transition-transform duration-500 group-hover:scale-[1.10]"
     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
   />
 
-  <div
-    className="pointer-events-none absolute inset-0 hidden items-center justify-center bg-black/0 transition-all duration-300 group-hover/image:bg-black/10 md:flex"
-    aria-hidden="true"
-  >
-    <span className="flex size-16 scale-75 items-center justify-center rounded-full bg-[#8B1E3F] text-3xl font-light text-white opacity-0 shadow-xl transition-all duration-300 group-hover/image:translate-y-2 group-hover/image:scale-100 group-hover/image:opacity-100">
-  ↓
-</span>
-  </div>
+  
 
       </div>
 
@@ -113,7 +215,9 @@ export default function Pricing() {
             })
           )
         }}
-        className="btn mt-6 border-none bg-[#8B1E3F] text-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:bg-[#6A0D2B] hover:shadow-lg"
+        className={`kit-cta btn mt-6 w-full border-none bg-[#8B1E3F] text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:bg-[#6A0D2B] hover:shadow-xl ${
+  "kit-cta-featured"
+}`}
       >
         {plan.cta}
       </button>
