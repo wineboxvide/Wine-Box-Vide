@@ -155,7 +155,7 @@ className={`group rounded-2xl border border-white/10 bg-white/95 p-6 text-base-c
     }`}
     style={{ transitionDelay: "1250ms" }}
   >
-    No solo vendemos un empaque.
+    Cada botella representa algo importante.
   </p>
 
   <h3
@@ -164,12 +164,12 @@ className={`group rounded-2xl border border-white/10 bg-white/95 p-6 text-base-c
     }`}
     style={{ transitionDelay: "1500ms" }}
   >
-    Vendemos seguridad en el transporte.
+    Nuestro trabajo es ayudar a que llegue protegida.
   </h3>
 
   <div
     className={`mx-auto mt-5 h-1 rounded-full bg-[#F2C75C] transition-all duration-700 ${
-      visible ? "w-20 opacity-100" : "w-0 opacity-0"
+      visible ? "w-32 opacity-100" : "w-0 opacity-0"
     }`}
     style={{ transitionDelay: "1750ms" }}
     aria-hidden="true"

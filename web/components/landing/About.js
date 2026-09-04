@@ -1,110 +1,331 @@
+"use client"
+
+import { useEffect, useRef } from "react"
+import Image from "next/image"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
 import {
-  BadgeCheck,
-  Trophy,
-  Wine,
   ShieldCheck,
-  Layers,
-  Handshake,
-  Target,
-  Eye,
+  PackageOpen,
+  MousePointerClick,
+  Building2,
 } from "lucide-react"
 
 const DIFFERENTIATORS = [
   {
-    icon: Wine,
-    title: "Diseño especializado para botellas",
-    description:
-      "Una solución desarrollada para brindar protección durante la manipulación y el transporte.",
-  },
-  {
     icon: ShieldCheck,
-    title: "Protección probada",
+    title: "Protege la botella",
     description:
-      "Validamos el funcionamiento de nuestra solución mediante pruebas reales de armado, resistencia e impacto.",
+      "Reduce el movimiento y ayuda a protegerla durante el transporte.",
   },
   {
-    icon: Layers,
-    title: "Soluciones para diferentes necesidades",
+    icon: PackageOpen,
+    title: "Se adapta a tu envío",
     description:
-      "Contamos con presentaciones para distintas cantidades de botellas y aplicaciones empresariales.",
+      "Presentaciones para 1, 2, 6 y 12 botellas.",
   },
   {
-    icon: Handshake,
-    title: "Atención B2B personalizada",
+    icon: MousePointerClick,
+    title: "Fácil de usar",
     description:
-      "Escuchamos las necesidades de cada negocio para recomendar la solución más adecuada para su operación.",
+      "Se arma, se coloca la botella y se integra a la caja.",
+  },
+  {
+    icon: Building2,
+    title: "Pensado para empresas",
+    description:
+      "Para negocios que venden, transportan o envían botellas.",
   },
 ]
 
 export default function About() {
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
+
+    const section = sectionRef.current
+    if (!section) return
+
+    const inserto = section.querySelector(".about-inserto")
+    if (!inserto) return
+
+    const animation = gsap.fromTo(
+  inserto,
+  {
+    x: -260,
+    y: 90,
+    scale: 0.35,
+    rotation: -28,
+    opacity: 0,
+  },
+  {
+    x: 20,
+    y: -8,
+    scale: 1,
+    rotation: 0,
+    opacity: 1,
+    ease: "none",
+    scrollTrigger: {
+      trigger: section,
+      start: "top 95%",
+      end: "top 48%",
+      scrub: 2.5,
+    },
+  }
+)
+const title = section.querySelector(".about-title")
+
+if (title) {
+  gsap.fromTo(
+    title,
+    {
+      y: 38,
+opacity: 0,
+scale: 0.94,
+    },
+    {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: section,
+       start: "top 62%",
+end: "top 38%",
+scrub: 2,
+      },
+    }
+  )
+}
+const intro = section.querySelector(".about-intro")
+
+if (intro) {
+  gsap.fromTo(
+    intro,
+    {
+      y: 24,
+      opacity: 0,
+    },
+    {
+      y: 0,
+      opacity: 1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: section,
+        start: "top 52%",
+        end: "top 32%",
+        scrub: 2,
+      },
+    }
+  )
+}
+const diffEyebrow = section.querySelector(".about-diff-eyebrow")
+const diffTitle = section.querySelector(".about-diff-title")
+const cards = section.querySelectorAll(".about-card")
+
+if (diffEyebrow && diffTitle) {
+  gsap.fromTo(
+    [diffEyebrow, diffTitle],
+    {
+      y: 30,
+      opacity: 0,
+    },
+    {
+      y: 0,
+      opacity: 1,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: diffEyebrow,
+        start: "top 88%",
+        end: "top 68%",
+        scrub: 1.5,
+      },
+    }
+  )
+}
+
+if (cards.length) {
+  gsap.fromTo(
+    cards,
+    {
+      y: 45,
+      opacity: 0,
+      scale: 0.96,
+    },
+    {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      stagger: 0.12,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: cards[0],
+        start: "top 90%",
+        end: "top 62%",
+        scrub: 1.8,
+      },
+    }
+  )
+}
+const purpose = section.querySelector(".about-purpose")
+const purposeText = section.querySelector(".about-purpose-text")
+
+if (purpose && purposeText) {
+  gsap.fromTo(
+    purpose,
+    {
+      y: 35,
+      opacity: 0,
+      scale: 0.97,
+    },
+    {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: purpose,
+        start: "top 90%",
+        end: "top 70%",
+        scrub: 1.5,
+      },
+    }
+  )
+
+  gsap.fromTo(
+    purposeText,
+    {
+      y: 20,
+      opacity: 0,
+    },
+    {
+      y: 0,
+      opacity: 1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: purpose,
+        start: "top 82%",
+        end: "top 65%",
+        scrub: 1.5,
+      },
+    }
+  )
+}
+const clientTitle = section.querySelector(".client-title")
+const clientSubtitle = section.querySelector(".client-subtitle")
+const clientValidation = section.querySelector(".client-validation")
+
+if (clientTitle && clientSubtitle && clientValidation) {
+  gsap.fromTo(
+    [clientTitle, clientSubtitle, clientValidation],
+    {
+      y: 35,
+      opacity: 0,
+    },
+    {
+      y: 0,
+      opacity: 1,
+      stagger: 0.18,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: clientTitle,
+        start: "top 92%",
+        end: "top 58%",
+        scrub: 1.8,
+      },
+    }
+  )
+}
+const clientWindow = section.querySelector(".client-window")
+const clientTrack = section.querySelector(".client-track")
+const clientCards = section.querySelectorAll(".client-logo-card")
+
+if (clientWindow && clientTrack && clientCards.length) {
+ gsap.fromTo(
+  clientTrack,
+  {
+   xPercent: -22,
+  },
+  {
+    xPercent: 22,
+    ease: "none",
+    scrollTrigger: {
+      trigger: clientWindow,
+      start: "top 95%",
+      end: "bottom 25%",
+      scrub: 2.5,
+    },
+  }
+)
+
+  gsap.fromTo(
+    clientCards,
+    {
+      opacity: 0,
+      scale: 0.9,
+    },
+    {
+      opacity: 1,
+      scale: 1,
+      stagger: 0.18,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: clientWindow,
+        start: "top 90%",
+        end: "top 68%",
+        scrub: 1.5,
+      },
+    }
+  )
+}
+    return () => {
+      animation.scrollTrigger?.kill()
+      animation.kill()
+    }
+  }, [])
+
   return (
-    <section
-      id="nosotros"
-      className="border-t border-base-200 bg-base-100 py-24 md:py-32"
+   <section
+  ref={sectionRef}
+  id="nosotros"
+      className="border-t border-[#E8DDE1] bg-[#F8F3F5] py-24 md:py-32"
     >
       <div className="mx-auto max-w-7xl px-4">
         <div className="mx-auto max-w-4xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-            Nosotros
-          </p>
-
-          <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">
-            ¿Por qué Wine Box Vide?
-          </h2>
-
-          <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-base-content/70 md:text-lg">
-            Nacimos con un propósito claro: desarrollar una forma más segura y
-            funcional de proteger botellas de vidrio durante su manipulación y
-            transporte.
-          </p>
-
-          <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-base-content/70 md:text-lg">
-            En Wine Box Vide combinamos diseño, funcionalidad y protección para
-            ofrecer soluciones pensadas para las necesidades reales de los
-            negocios que comercializan y envían productos en botellas de vidrio.
-          </p>
-        </div>
-
-        <div className="mt-16 grid gap-8 md:grid-cols-2">
-          <div className="rounded-3xl border border-base-200 bg-base-100 p-8 shadow-sm">
-            <div className="mb-5 inline-flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-              <BadgeCheck className="size-6" />
-            </div>
-
-           <h3 className="text-2xl font-semibold">
-           Título de Registro de Diseño Industrial · IMPI
-           </h3>
-
-          <p className="mt-4 text-base leading-7 text-base-content/70">
-           Nuestro inserto protector cuenta con el Título de Registro de Diseño
-           Industrial No. 72493, respaldando el desarrollo de una solución
-           propia.
-          </p>
-          </div>
-
-          <div className="rounded-3xl border border-base-200 bg-base-100 p-8 shadow-sm">
-            <div className="mb-5 inline-flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-              <Trophy className="size-6" />
-            </div>
-
-            <h3 className="text-2xl font-semibold">
-              Proyecto Ganador · Vende tu Proyecto 2026
-            </h3>
-
-            <p className="mt-4 text-base leading-7 text-base-content/70">
-              Wine Box Vide fue uno de los proyectos ganadores, reconocimiento
-              que impulsa el desarrollo y crecimiento de nuestra solución.
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-20">
-          <div className="text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+    Nosotros
+  </p>
+
+  <div className="relative mt-4 inline-flex items-center justify-center gap-3">
+  <Image
+  src="/images/inserto-recorrido.png"
+  alt=""
+  width={80}
+  height={120}
+  className="about-inserto h-auto w-16 object-contain md:w-20"
+  aria-hidden="true"
+/>
+
+  <h2 className="about-title text-4xl font-bold tracking-tight md:text-5xl">
+    ¿Por qué Wine Box Vide?
+  </h2>
+</div>
+
+  <p className="about-intro mx-auto mt-5 max-w-3xl text-base leading-8 text-base-content/70 md:text-lg">
+    Diseñamos empaques inteligentes para proteger botellas de vidrio durante su
+    manipulación, transporte y envío.
+  </p>
+</div>
+        <div className="mt-10 md:mt-12">
+          <div className="text-center">
+            <p className="about-diff-eyebrow text-sm font-semibold uppercase tracking-[0.18em] text-primary">
               Lo que nos diferencia
             </p>
 
-            <h3 className="mt-4 text-3xl font-bold tracking-tight md:text-4xl">
+            <h3 className="about-diff-title mt-4 text-3xl font-bold tracking-tight md:text-4xl">
               Una solución pensada para necesidades reales
             </h3>
           </div>
@@ -113,11 +334,11 @@ export default function About() {
             {DIFFERENTIATORS.map(({ icon: Icon, title, description }) => (
               <div
                 key={title}
-                className="min-h-[240px] rounded-2xl border border-base-200 bg-base-100 p-7"
+                className="about-card group min-h-[210px] rounded-2xl border border-[#8B1E3F]/20 bg-white p-7 shadow-[0_10px_30px_rgba(85,20,42,0.08)] transition-all duration-300 hover:-translate-y-2 hover:border-[#8B1E3F]/45 hover:shadow-[0_18px_40px_rgba(85,20,42,0.16)]"
               >
-                <div className="mb-5 inline-flex size-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <Icon className="size-5" />
-                </div>
+               <div className="about-card-icon mb-6 inline-flex size-12 items-center justify-center rounded-xl bg-[#8B1E3F] text-[#F2C75C] shadow-sm transition-all duration-300 group-hover:scale-110">
+  <Icon className="about-card-icon-symbol size-5" />
+</div>
 
                 <h4 className="text-xl font-semibold leading-7">
                   {title}
@@ -130,50 +351,59 @@ export default function About() {
             ))}
           </div>
         </div>
+<div className="relative left-1/2 mt-20 w-screen -translate-x-1/2 bg-[#8B1E3F] py-20 md:py-24">
+  <div className="mx-auto max-w-7xl px-4">
+<div className="client-proof mx-auto max-w-6xl text-center">
 
-        <div className="mt-20 grid gap-8 md:grid-cols-2">
-          <div className="rounded-3xl bg-[#5A0A22] p-9 text-white md:p-10">
-            <div className="mb-5 inline-flex size-12 items-center justify-center rounded-xl bg-white/10 text-[#F2C75C]">
-              <Target className="size-6" />
-            </div>
+    <p className="client-title text-3xl font-bold uppercase tracking-[0.12em] text-[#F2C75C] md:text-4xl">
+  Ya confían en Wine Box Vide
+</p>
+<h3 className="client-subtitle mx-auto mt-5 max-w-3xl text-xl font-medium leading-8 text-white/90 md:text-2xl">
+  Una solución que ya está siendo utilizada por negocios reales
+</h3>
+      <p className="client-validation mt-8 text-sm font-semibold uppercase tracking-[0.20em] text-[#F2C75C]">
+        Clientes reales · Validación real
+      </p>
 
-            <h3 className="text-3xl font-bold">
-              Misión
-            </h3>
+      <div className="client-window mt-8 overflow-hidden py-8">
+        <div className="client-track flex items-center gap-16 md:gap-24">
 
-            <p className="mt-5 text-base leading-8 text-white/85">
-              Desarrollar soluciones inteligentes de empaque que protegen,
-              presentan y agregan valor a los productos de nuestros clientes,
-              con alternativas funcionales, sostenibles e innovadoras que
-              mejoran la seguridad durante el almacenamiento, transporte y envío.
-            </p>
+          <div className="client-logo-card flex min-h-[180px] w-[360px] shrink-0 items-center justify-center px-6 py-6">
+            <Image
+              src="/logos/logo-la-castellana.png"
+              alt="La Castellana"
+              width={320}
+              height={140}
+              className="h-auto max-h-28 w-auto max-w-full object-contain"
+            />
           </div>
 
-          <div className="rounded-3xl bg-[#5A0A22] p-9 text-white md:p-10">
-            <div className="mb-5 inline-flex size-12 items-center justify-center rounded-xl bg-white/10 text-[#F2C75C]">
-              <Eye className="size-6" />
-            </div>
-
-            <h3 className="text-3xl font-bold">
-              Visión
-            </h3>
-
-            <p className="mt-5 text-base leading-8 text-white/85">
-              Ser referentes en soluciones inteligentes de empaque para
-              productos en botellas de vidrio, reconocidos por innovación,
-              calidad y compromiso, para que las marcas entreguen sus productos
-              de forma segura y con una presentación de alto valor.
-            </p>
+          <div className="client-logo-card flex min-h-[180px] w-[360px] shrink-0 items-center justify-center px-6 py-6">
+            <Image
+              src="/logos/logo-empacalo.png"
+              alt="Empacalo"
+              width={320}
+              height={140}
+              className="h-auto max-h-28 w-auto max-w-full object-contain"
+            />
           </div>
-        </div>
 
-        <div className="mx-auto mt-14 max-w-5xl rounded-3xl border border-primary/20 bg-primary/5 px-8 py-10 text-center">
-          <p className="text-xl font-semibold leading-9 text-base-content">
-            Cada botella lleva detrás el trabajo de una empresa, el valor de un
-            producto y la confianza de un cliente. Protegerla es nuestra razón de ser.
-          </p>
         </div>
       </div>
-    </section>
+    </div>
+
+    <div className="about-purpose mx-auto mt-10 max-w-5xl border-t border-white/20 px-8 pt-10 text-center">
+      <p className="about-purpose-text mx-auto max-w-4xl text-xl font-semibold leading-9 text-white md:text-2xl">
+        <span className="text-[#F2C75C]">
+          No es solamente un proyecto:
+        </span>{" "}
+        ya hay negocios que han comprado y utilizado nuestra solución.
+      </p>
+    </div>
+
+  </div>
+</div>
+        </div>
+          </section>
   )
 }
