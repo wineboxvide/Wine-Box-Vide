@@ -294,16 +294,16 @@ features: {
           {
             title: "Wine Box Vide",
             links: [
-              { label: "Nuestra solución", href: "#features" },
-              { label: "Nuestros kits", href: "#pricing" },
-              { label: "Preguntas frecuentes", href: "#faq" },
+             { label: "Nuestra solución", href: "#soluciones" },
+{ label: "Nuestros kits", href: "#kits" },
+{ label: "Preguntas frecuentes", href: "#faq" },
             ],
           },
           {
             title: "Contacto",
             links: [
               { label: "Quiero cotizar", href: "#contacto" },
-              { label: "Cotiza tu proyecto", href: "#waitlist" },
+              
             ],
           },
         ],

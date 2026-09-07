@@ -9,8 +9,7 @@ import Contact from "@/components/landing/Contact"
 import WhatsAppButton from "@/components/landing/WhatsAppButton"
 import Wivi from "@/components/landing/Wivi"
 import FAQ from "@/components/landing/FAQ"
-import FinalCta from "@/components/landing/FinalCta"
-import Waitlist from "@/components/landing/Waitlist"
+
 import config from "@/config"
 
 export const metadata = {
@@ -37,8 +36,7 @@ export default function HomePage() {
       <About />
       <Contact />
       <FAQ />
-      <FinalCta />
-     {config.features.waitlist && <Waitlist />}
+      
      <Wivi />
      <WhatsAppButton />
     </>

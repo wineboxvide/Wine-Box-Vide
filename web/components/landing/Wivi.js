@@ -64,6 +64,7 @@ const INFO_RESPONSES = {
 
 export default function Wivi() {
   const [open, setOpen] = useState(false)
+const [contactVisible, setContactVisible] = useState(false)
   const [selected, setSelected] = useState(null)
 const [quoteStep, setQuoteStep] = useState(1)
 const [sendingQuote, setSendingQuote] = useState(false)
@@ -90,6 +91,23 @@ useEffect(() => {
   return () => {
     window.removeEventListener("wivi:cotizacion", openQuote)
   }
+}, [])
+useEffect(() => {
+  const contacto = document.getElementById("contacto")
+  if (!contacto) return
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      setContactVisible(entry.isIntersecting)
+    },
+    {
+      threshold: 0.2,
+    }
+  )
+
+  observer.observe(contacto)
+
+  return () => observer.disconnect()
 }, [])
 
 const [quoteData, setQuoteData] = useState({
@@ -151,7 +169,11 @@ async function submitQuote() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Habla con Wivi"
-        className="group fixed bottom-20 right-5 z-50 flex h-14 w-16 items-center gap-0 overflow-hidden rounded-full bg-[#6A0D2B] p-2 font-semibold text-white shadow-lg transition-all duration-500 hover:w-48 hover:bg-[#7A1234] hover:shadow-xl focus-visible:w-48 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F2C75C]"
+        className={`group fixed bottom-20 right-5 z-50 flex h-14 w-16 items-center gap-0 overflow-hidden rounded-full bg-[#6A0D2B] p-2 font-semibold text-white shadow-lg transition-all duration-500 hover:w-48 hover:bg-[#7A1234] hover:shadow-xl focus-visible:w-48 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F2C75C] ${
+  contactVisible
+    ? "pointer-events-none translate-y-4 opacity-0"
+    : "translate-y-0 opacity-100"
+}`}
       >
       <div className="relative size-10 shrink-0 overflow-hidden rounded-full border-2 border-white/30 bg-white">
   <Image

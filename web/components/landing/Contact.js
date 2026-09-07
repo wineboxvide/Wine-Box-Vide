@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import {
   MessageCircle,
   Mail,
@@ -8,6 +8,8 @@ import {
   Send,
 } from "lucide-react"
 import config from "@/config"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 const PRODUCT_TYPES = [
   "Vino",
@@ -18,6 +20,7 @@ const PRODUCT_TYPES = [
 ]
 
 export default function Contact() {
+const sectionRef = useRef(null)
   const whatsappUrl = `https://wa.me/${config.contact.whatsapp}?text=${encodeURIComponent(
     config.contact.whatsappMessage
   )}`
@@ -78,9 +81,60 @@ export default function Contact() {
     setStatus("error")
   }
 }
+  
+useEffect(() => {
+  gsap.registerPlugin(ScrollTrigger)
+
+  const section = sectionRef.current
+  if (!section) return
+
+  const channels = section.querySelector(".contact-channels")
+  const form = section.querySelector(".contact-form")
+
+  const ctx = gsap.context(() => {
+    if (channels) {
+      gsap.fromTo(
+        channels,
+        { x: -70, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 82%",
+            end: "top 48%",
+            scrub: 1.5,
+          },
+        }
+      )
+    }
+
+    if (form) {
+      gsap.fromTo(
+        form,
+        { x: 70, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 82%",
+            end: "top 48%",
+            scrub: 1.5,
+          },
+        }
+      )
+    }
+  }, section)
+
+  return () => ctx.revert()
+}, [])
 
   return (
     <section
+     ref={sectionRef}
       id="contacto"
       className="border-t border-base-200 bg-base-100 py-20 md:py-28"
     >
@@ -95,15 +149,17 @@ export default function Contact() {
           </h2>
 
           <p className="mt-4 text-base leading-7 text-base-content/70">
-            Cuéntanos qué producto manejas, cuántas botellas necesitas proteger
-            y cómo realizas tus entregas. Te ayudaremos a identificar la solución
-            más adecuada para tu operación.
+            Te ayudaremos a identificar la solución más adecuada para tu operación.
           </p>
         </div>
 
         <div className="mt-14 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-          <div className="rounded-3xl bg-[#5A0A22] p-8 text-white">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#F2C75C]">
+          <div className="contact-channels relative overflow-hidden rounded-3xl bg-[#5A0A22] p-8 text-white shadow-[0_20px_50px_rgba(90,10,34,0.18)]">
+            <div
+  className="pointer-events-none absolute -right-16 -top-16 size-48 rounded-full border border-[#F2C75C]/20"
+  aria-hidden="true"
+/>
+<p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#F2C75C]">
               Canales directos
             </p>
 
@@ -125,8 +181,8 @@ export default function Contact() {
               Escribirnos por WhatsApp
             </a>
 
-            <div className="mt-8 space-y-4">
-             <div className="flex items-start gap-3">
+            <div className="relative z-10 mt-8 space-y-3">
+             <div className="rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10">
            <Mail className="mt-0.5 size-5 text-[#F2C75C]" />
           <div>
           <p className="font-semibold">Correo electrónico</p>
@@ -138,8 +194,7 @@ export default function Contact() {
         </a>
        </div>
       </div>
-
-              <div className="flex items-start gap-3">
+<div className="rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10">
   <Instagram className="mt-0.5 size-5 text-[#F2C75C]" />
   <div>
     <p className="font-semibold">Instagram</p>
@@ -154,7 +209,7 @@ export default function Contact() {
   </div>
 </div>
 
-<div className="flex items-start gap-3">
+<div className="rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10">
   <Send className="mt-0.5 size-5 text-[#F2C75C]" />
   <div>
     <p className="font-semibold">TikTok</p>
@@ -171,7 +226,7 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-base-200 bg-base-100 p-7 shadow-sm md:p-8">
+          <div className="contact-form rounded-3xl border border-base-200 bg-base-100 p-7 shadow-sm md:p-8">
             <h3 className="text-2xl font-bold">
               Solicitar información
             </h3>
