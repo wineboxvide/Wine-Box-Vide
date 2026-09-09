@@ -77,7 +77,7 @@ export default function ForBusiness() {
       <div className="mx-auto max-w-3xl overflow-hidden text-center">
   
 <p
-  className={`text-sm font-semibold uppercase tracking-[0.18em] text-text-[#E8D6C0] transition-all duration-700 ${
+  className={`text-sm font-semibold uppercase tracking-[0.18em] text-[#E8D6C0] transition-all duration-700 ${
     visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
   }`}
 >

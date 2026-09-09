@@ -48,7 +48,7 @@ export default function Features() {
   className="..."
 >
       <div className="mx-auto max-w-6xl px-4">
-        <div className="mx-auto max-w-2xl overflow-hidden text-center">
+        <div className="mx-auto max-w-2xl overflow-hidden pt-8 text-center md:pt-8">
   <p
     className={`text-sm font-semibold uppercase tracking-[0.18em] text-primary transition-all duration-700 ${
       visible
@@ -194,3 +194,4 @@ export default function Features() {
     </section>
   )
 }
+

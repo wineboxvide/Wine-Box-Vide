@@ -182,32 +182,32 @@ useEffect(() => {
             </a>
 
             <div className="relative z-10 mt-8 space-y-3">
-             <div className="rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10">
-           <Mail className="mt-0.5 size-5 text-[#E8D6C0]" />
-          <div>
-          <p className="font-semibold">Correo electrónico</p>
-         <a
-         href="mailto:wineboxvide@gmail.com"
-         className="text-sm text-white/70 hover:text-white"
-         >
-         wineboxvide@gmail.com
-        </a>
-       </div>
-      </div>
-<div className="rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10">
+            <a
+  href="https://mail.google.com/mail/?view=cm&fs=1&to=wineboxvide@gmail.com"
+  className="block rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10"
+>
+  <Mail className="mt-0.5 size-5 text-[#E8D6C0]" />
+  <div>
+    <p className="font-semibold">Correo electrónico</p>
+    <p className="text-sm text-white/70">
+      wineboxvide@gmail.com
+    </p>
+  </div>
+</a>
+<a
+  href="https://www.instagram.com/wineboxvide1/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="block rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10"
+>
   <Instagram className="mt-0.5 size-5 text-[#E8D6C0]" />
   <div>
     <p className="font-semibold">Instagram</p>
-    <a
-      href="https://www.instagram.com/wineboxvide1/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-sm text-white/70 hover:text-white"
-    >
+    <p className="text-sm text-white/70">
       @wineboxvide1
-    </a>
+    </p>
   </div>
-</div>
+</a>
 
 <div className="rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10">
   <Send className="mt-0.5 size-5 text-[#E8D6C0]" />

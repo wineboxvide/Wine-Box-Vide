@@ -61,7 +61,7 @@ export default function About() {
     opacity: 0,
   },
   {
-    x: 20,
+    x: window.innerWidth < 768 ? 0 : 20,
     y: -8,
     scale: 1,
     rotation: 0,
@@ -247,10 +247,10 @@ if (clientWindow && clientTrack && clientCards.length) {
  gsap.fromTo(
   clientTrack,
   {
-   xPercent: -22,
+   xPercent: window.innerWidth < 768 ? 0 : -22,
   },
   {
-    xPercent: 22,
+    xPercent: window.innerWidth < 768 ? 0 : 22,
     ease: "none",
     scrollTrigger: {
       trigger: clientWindow,
@@ -291,7 +291,7 @@ if (clientWindow && clientTrack && clientCards.length) {
    <section
   ref={sectionRef}
   id="nosotros"
-      className="border-t border-[#E8DDE1] bg-[#F8F3F5] py-24 md:py-32"
+      className="overflow-x-hidden border-t border-[#E8DDE1] bg-[#F8F3F5] py-24 md:py-32"
     >
       <div className="mx-auto max-w-7xl px-4">
         <div className="mx-auto max-w-4xl text-center">
@@ -299,7 +299,7 @@ if (clientWindow && clientTrack && clientCards.length) {
     Nosotros
   </p>
 
-  <div className="relative mt-4 inline-flex items-center justify-center gap-3">
+  <div className="relative mt-4 flex flex-col items-center justify-center gap-3 md:inline-flex md:flex-row">
   <Image
   src="/images/inserto-recorrido.png"
   alt=""
@@ -351,7 +351,7 @@ if (clientWindow && clientTrack && clientCards.length) {
             ))}
           </div>
         </div>
-<div className="relative left-1/2 mt-20 w-screen -translate-x-1/2 bg-[#6A0D2B] py-20 md:py-24">
+<div className="relative mt-20 w-full bg-[#6A0D2B] py-20 md:left-1/2 md:w-screen md:-translate-x-1/2 md:py-24">
   <div className="mx-auto max-w-7xl px-4">
 <div className="client-proof mx-auto max-w-6xl text-center">
 
@@ -366,7 +366,7 @@ if (clientWindow && clientTrack && clientCards.length) {
       </p>
 
       <div className="client-window mt-8 overflow-hidden py-8">
-        <div className="client-track flex items-center gap-16 md:gap-24">
+       <div className="client-track flex flex-col items-center gap-8 md:flex-row md:gap-24">
 
           <div className="client-logo-card flex min-h-[180px] w-[360px] shrink-0 items-center justify-center px-6 py-6">
             <Image

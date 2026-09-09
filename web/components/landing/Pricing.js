@@ -254,7 +254,7 @@ useEffect(() => {
     className={`inline-block overflow-hidden whitespace-nowrap transition-all duration-1000 ${
       visible ? "max-w-[220px] opacity-100" : "max-w-0 opacity-0"
     }`}
-    style={{ transitionDelay: "1300ms" }}
+    style={{ transitionDelay: "200ms" }}
   >
     Cuéntanos qué necesitas
   </span>
@@ -262,7 +262,7 @@ useEffect(() => {
   className={`ml-2 inline-block transition-all duration-500 ${
     visible ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"
   }`}
-  style={{ transitionDelay: "2200ms" }}
+  style={{ transitionDelay: "350ms" }}
   aria-hidden="true"
 >
   →

@@ -65,10 +65,32 @@ const INFO_RESPONSES = {
 export default function Wivi() {
   const [open, setOpen] = useState(false)
 const [contactVisible, setContactVisible] = useState(false)
+const [viewportRight, setViewportRight] = useState(16)
   const [selected, setSelected] = useState(null)
 const [quoteStep, setQuoteStep] = useState(1)
 const [sendingQuote, setSendingQuote] = useState(false)
 const [quoteError, setQuoteError] = useState("")
+useEffect(() => {
+  const updateViewportRight = () => {
+    const visualWidth = window.visualViewport?.width ?? window.innerWidth
+    const offsetLeft = window.visualViewport?.offsetLeft ?? 0
+    const offset = window.innerWidth - visualWidth - offsetLeft
+
+    setViewportRight(Math.max(16, offset + 16))
+  }
+
+  updateViewportRight()
+
+  window.addEventListener("resize", updateViewportRight)
+  window.visualViewport?.addEventListener("resize", updateViewportRight)
+  window.visualViewport?.addEventListener("scroll", updateViewportRight)
+
+  return () => {
+    window.removeEventListener("resize", updateViewportRight)
+    window.visualViewport?.removeEventListener("resize", updateViewportRight)
+    window.visualViewport?.removeEventListener("scroll", updateViewportRight)
+  }
+}, [])
 useEffect(() => {
   function openQuote(event) {
   const kit = event?.detail?.kit || ""
@@ -169,7 +191,8 @@ async function submitQuote() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Habla con Wivi"
-        className={`group fixed bottom-20 right-5 z-50 flex h-14 w-16 items-center gap-0 overflow-hidden rounded-full bg-[#6A0D2B] p-2 font-semibold text-white shadow-lg transition-all duration-500 hover:w-48 hover:bg-[#7A1234] hover:shadow-xl focus-visible:w-48 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F2C75C] ${
+        style={{ right: `${viewportRight}px` }}
+        className={`group fixed bottom-24 right-4 md:bottom-20 md:right-5 z-50 flex h-14 w-16 items-center gap-0 overflow-hidden rounded-full bg-[#6A0D2B] p-2 font-semibold text-white shadow-lg transition-all duration-500 hover:w-48 hover:bg-[#7A1234] hover:shadow-xl focus-visible:w-48 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#F2C75C] ${
   contactVisible
     ? "pointer-events-none translate-y-4 opacity-0"
     : "translate-y-0 opacity-100"
@@ -190,7 +213,10 @@ async function submitQuote() {
       </button>
 
     {open && (
-  <div className="fixed bottom-24 right-5 z-[60] w-[calc(100vw-2rem)] max-w-sm overflow-hidden rounded-3xl border border-base-200 bg-base-100 shadow-2xl">
+  <div
+  style={{ right: `${viewportRight}px` }}
+  className="fixed bottom-24 right-5 z-[60] w-[calc(100vw-2rem)] max-w-sm overflow-hidden rounded-3xl border border-base-200 bg-base-100 shadow-2xl"
+>
     <div className="bg-[#6A0D2B] px-5 py-4 text-white">
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-3">
