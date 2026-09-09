@@ -101,7 +101,7 @@ export default function Problem() {
                   : "translate-y-5 opacity-0"
               }`}
             >
-              <div className="mb-5 inline-flex size-16 items-center justify-center rounded-2xl bg-[#F7E7EC] text-[#8B1E3F] shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:rotate-3 group-hover:scale-110 group-hover:bg-white/15 group-hover:text-[#F2C75C] group-hover:shadow-md">
+              <div className="mb-5 inline-flex size-16 items-center justify-center rounded-2xl bg-[#F7E7EC] text-[#8B1E3F] shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:rotate-3 group-hover:scale-110 group-hover:bg-white/15 group-hover:text-[#E8D6C0] group-hover:shadow-md">
   <Icon
     name={item.icon}
     className="size-8 transition-transform duration-300 group-hover:scale-125 group-hover:-rotate-3"

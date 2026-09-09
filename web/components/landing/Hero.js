@@ -14,10 +14,9 @@ export default function Hero() {
 
         {/* Contenido */}
         <div>
-  <p className="hero-reveal mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#F2C75C]">
-    Protección para botellas de vidrio
-  </p>
-         <h1 className="hero-reveal hero-reveal-delay-1 text-balance text-4xl font-bold leading-tight tracking-tight md:text-6xl">
+  <p className="hero-reveal mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#E8D6C0]">
+  Protección para botellas de vidrio
+</p>    <h1 className="hero-reveal hero-reveal-delay-1 text-balance text-4xl font-bold leading-tight tracking-tight md:text-6xl">
             Protegemos lo que hay{" "}
             <span className="text-[#F0008B]">
               detrás de cada botella.
@@ -46,7 +45,7 @@ export default function Hero() {
           <div className="hero-reveal hero-reveal-delay-4 mt-7 flex flex-col gap-3">
             <div className="flex items-center gap-2 text-sm font-medium text-white/85">
               <ShieldCheck
-                className="size-5 shrink-0 text-[#F2C75C]"
+                className="size-5 shrink-0 text-[#E8D6C0]"
                 aria-hidden="true"
               />
               <span>Diseño Industrial Registrado IMPI · 72493</span>
@@ -54,7 +53,7 @@ export default function Hero() {
 
             <div className="flex items-center gap-2 text-sm font-medium text-white/85">
               <Award
-                className="size-5 shrink-0 text-[#F2C75C]"
+               className="size-5 shrink-0 text-[#E8D6C0]"
                 aria-hidden="true"
               />
               <span>Proyecto Ganador · Vende tu Proyecto 2026</span>

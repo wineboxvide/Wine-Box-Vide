@@ -215,7 +215,7 @@ useEffect(() => {
             })
           )
         }}
-        className={`kit-cta btn mt-6 w-full border-none bg-[#8B1E3F] text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:bg-[#6A0D2B] hover:shadow-xl ${
+       className={`kit-cta btn mt-6 w-full border-none bg-[#F0008B] text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:bg-[#D5007B] hover:text-white hover:shadow-xl ${
   "kit-cta-featured"
 }`}
       >
@@ -231,9 +231,9 @@ useEffect(() => {
   }`}
   style={{ transitionDelay: "850ms" }}
 >
-  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#F2C75C]">
-    Requerimiento especial
-  </p>
+  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#E8D6C0]">
+  Requerimiento especial
+</p>
 
   <h3 className="mt-3 text-2xl font-bold md:text-3xl">
     ¿Necesitas algo diferente?
@@ -248,7 +248,7 @@ useEffect(() => {
     onClick={() => {
       window.dispatchEvent(new CustomEvent("wivi:cotizacion"))
     }}
-    className="btn mt-6 border-none bg-white text-[#6A0D2B] shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-[#F2C75C] hover:shadow-lg"
+    className="btn mt-6 border-none bg-[#F0008B] text-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-[#D5007B] hover:text-white hover:shadow-lg"
   >
   <span
     className={`inline-block overflow-hidden whitespace-nowrap transition-all duration-1000 ${

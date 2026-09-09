@@ -336,7 +336,7 @@ if (clientWindow && clientTrack && clientCards.length) {
                 key={title}
                 className="about-card group min-h-[210px] rounded-2xl border border-[#8B1E3F]/20 bg-white p-7 shadow-[0_10px_30px_rgba(85,20,42,0.08)] transition-all duration-300 hover:-translate-y-2 hover:border-[#8B1E3F]/45 hover:shadow-[0_18px_40px_rgba(85,20,42,0.16)]"
               >
-               <div className="about-card-icon mb-6 inline-flex size-12 items-center justify-center rounded-xl bg-[#8B1E3F] text-[#F2C75C] shadow-sm transition-all duration-300 group-hover:scale-110">
+               <div className="about-card-icon mb-6 inline-flex size-12 items-center justify-center rounded-xl bg-[#8B1E3F] text-[#E8D6C0] shadow-sm transition-all duration-300 group-hover:scale-110">
   <Icon className="about-card-icon-symbol size-5" />
 </div>
 
@@ -351,17 +351,17 @@ if (clientWindow && clientTrack && clientCards.length) {
             ))}
           </div>
         </div>
-<div className="relative left-1/2 mt-20 w-screen -translate-x-1/2 bg-[#8B1E3F] py-20 md:py-24">
+<div className="relative left-1/2 mt-20 w-screen -translate-x-1/2 bg-[#6A0D2B] py-20 md:py-24">
   <div className="mx-auto max-w-7xl px-4">
 <div className="client-proof mx-auto max-w-6xl text-center">
 
-    <p className="client-title text-3xl font-bold uppercase tracking-[0.12em] text-[#F2C75C] md:text-4xl">
+    <p className="client-title text-3xl font-bold uppercase tracking-[0.12em] text-[#F7EDE7] md:text-4xl">
   Ya confían en Wine Box Vide
 </p>
 <h3 className="client-subtitle mx-auto mt-5 max-w-3xl text-xl font-medium leading-8 text-white/90 md:text-2xl">
   Una solución que ya está siendo utilizada por negocios reales
 </h3>
-      <p className="client-validation mt-8 text-sm font-semibold uppercase tracking-[0.20em] text-[#F2C75C]">
+      <p className="client-validation mt-8 text-sm font-semibold uppercase tracking-[0.20em] text-[#E8D6C0]">
         Clientes reales · Validación real
       </p>
 
@@ -370,7 +370,7 @@ if (clientWindow && clientTrack && clientCards.length) {
 
           <div className="client-logo-card flex min-h-[180px] w-[360px] shrink-0 items-center justify-center px-6 py-6">
             <Image
-              src="/logos/logo-la-castellana.png"
+             src="/logos/logo-la-castellana-blanco.png"
               alt="La Castellana"
               width={320}
               height={140}
@@ -391,15 +391,14 @@ if (clientWindow && clientTrack && clientCards.length) {
         </div>
       </div>
     </div>
-
-    <div className="about-purpose mx-auto mt-10 max-w-5xl border-t border-white/20 px-8 pt-10 text-center">
-      <p className="about-purpose-text mx-auto max-w-4xl text-xl font-semibold leading-9 text-white md:text-2xl">
-        <span className="text-[#F2C75C]">
-          No es solamente un proyecto:
-        </span>{" "}
-        ya hay negocios que han comprado y utilizado nuestra solución.
-      </p>
-    </div>
+<div className="about-purpose mx-auto mt-10 max-w-5xl border-t border-[#F0008B]/60 px-8 pt-12 text-center">
+  <p className="about-purpose-text mx-auto max-w-4xl text-xl font-semibold leading-9 md:text-2xl">
+    <span className="text-[#E8D6C0]">No es solamente un proyecto:</span>{" "}
+    <span className="text-white">
+      ya hay negocios que han comprado y utilizado nuestra solución.
+    </span>
+  </p>
+</div>
 
   </div>
 </div>

@@ -11,10 +11,10 @@ function Icon({ name, className }) {
 
 // Paleta de chips que cicla por item (clases literales para el JIT de Tailwind).
 const CHIP_COLORS = [
-  "bg-[#F7E7EC] text-[#8B1E3F] group-hover:bg-[#8B1E3F] group-hover:text-[#F2C75C]",
-  "bg-[#F3EAF8] text-[#7A3E9D] group-hover:bg-[#8B1E3F] group-hover:text-[#F2C75C]",
-  "bg-[#EAF4F8] text-[#2F6F89] group-hover:bg-[#8B1E3F] group-hover:text-[#F2C75C]",
-  "bg-[#EDF5EC] text-[#4F7A52] group-hover:bg-[#8B1E3F] group-hover:text-[#F2C75C]",
+  "bg-[#F7E7EC] text-[#8B1E3F] group-hover:bg-[#8B1E3F] group-hover:text-[#E8D6C0]",
+  "bg-[#F3EAF8] text-[#7A3E9D] group-hover:bg-[#8B1E3F] group-hover:text-[#E8D6C0]",
+  "bg-[#EAF4F8] text-[#2F6F89] group-hover:bg-[#8B1E3F] group-hover:text-[#E8D6C0]",
+  "bg-[#EDF5EC] text-[#4F7A52] group-hover:bg-[#8B1E3F] group-hover:text-[#E8D6C0]",
 ]
 
 export default function Features() {
@@ -129,10 +129,9 @@ export default function Features() {
     visible ? "translate-x-0 opacity-100" : "-translate-x-10 opacity-0"
   }`}
   style={{ transitionDelay: "900ms" }}
->
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#F2C75C]">
-              Prueba real
-            </p>
+><p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#E8D6C0]">
+  Prueba real
+</p>
 
             <h3 className="mt-3 text-3xl font-bold tracking-tight">
               No solo lo decimos. Lo ponemos a prueba.
@@ -144,30 +143,29 @@ export default function Features() {
             </p>
 
             <p
-  className={`mt-5 overflow-hidden whitespace-nowrap font-semibold text-[#F2C75C] transition-all duration-700 ${
+  className={`mt-5 overflow-hidden whitespace-nowrap font-semibold text-[#E8D6C0] transition-all duration-700 ${
     visible ? "max-w-[320px] opacity-100" : "max-w-0 opacity-0"
   }`}
   style={{ transitionDelay: "900ms" }}
 >
   Pruebas reales. Protección real.
 </p>
-<div
-  className={`mt-4 inline-flex items-center rounded-full border border-[#F2C75C]/40 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition-all duration-700 ${
+  <div
+  className={`mt-4 inline-flex items-center rounded-full border border-[#E8D6C0]/40 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition-all duration-700 ${
     visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
   }`}
   style={{ transitionDelay: "1050ms" }}
->Primera prueba realizada desde una altura de 1.50 m.
+>
+  Primera prueba realizada desde una altura de 1.50 m.
 </div>
-<div className="mt-6 flex flex-wrap gap-3">
-  
   <Link
   href="#como-funciona"
-  className="proof-cta btn border border-[#F2C75C]/60 bg-white/5 text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-[#F2C75C] hover:bg-[#F2C75C] hover:text-[#5A0A22] hover:shadow-xl"
+  className="proof-cta btn border border-[#F0008B] bg-[#F0008B] text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-[#D5007B] hover:bg-[#D5007B] hover:text-white hover:shadow-xl"
 >
   Ver pruebas y funcionamiento
 </Link>
 </div>
-          </div>
+          
 
          <div
   className={`overflow-hidden rounded-2xl border border-white/10 bg-black/20 transition-all duration-700 ${

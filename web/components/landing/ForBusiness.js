@@ -77,7 +77,7 @@ export default function ForBusiness() {
       <div className="mx-auto max-w-3xl overflow-hidden text-center">
   
 <p
-  className={`text-sm font-semibold uppercase tracking-[0.18em] text-[#F2C75C] transition-all duration-700 ${
+  className={`text-sm font-semibold uppercase tracking-[0.18em] text-text-[#E8D6C0] transition-all duration-700 ${
     visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
   }`}
 >
@@ -114,7 +114,7 @@ className={`group rounded-2xl border border-white/10 bg-white/95 p-6 text-base-c
   visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
 }`}
             >
-              <div className="mb-4 inline-flex size-11 items-center justify-center rounded-xl bg-[#5A0A22] text-[#F2C75C]">
+             <div className="mb-4 inline-flex size-11 items-center justify-center rounded-xl bg-[#5A0A22] text-[#E8D6C0]">
                <Icon
   className={`size-5 transition-transform duration-500 ${
     i === 0
@@ -144,7 +144,7 @@ className={`group rounded-2xl border border-white/10 bg-white/95 p-6 text-base-c
         </div>
 
        <div
-  className={`mx-auto mt-12 max-w-4xl overflow-hidden rounded-3xl border border-[#F2C75C]/30 bg-black/10 px-6 py-10 text-center transition-all duration-700 md:px-10 ${
+  className={`mx-auto mt-12 max-w-4xl overflow-hidden rounded-3xl border border-[#F0008B]/40 bg-black/10 px-6 py-10 text-center transition-all duration-700 md:px-10 ${
     visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
   }`}
   style={{ transitionDelay: "1100ms" }}
@@ -159,7 +159,8 @@ className={`group rounded-2xl border border-white/10 bg-white/95 p-6 text-base-c
   </p>
 
   <h3
-    className={`mt-2 text-2xl font-bold text-[#F2C75C] transition-all duration-700 md:text-3xl ${
+   
+  className={`mt-2 text-2xl font-bold text-[#E8D6C0] transition-all duration-700 md:text-3xl ${
       visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
     }`}
     style={{ transitionDelay: "1500ms" }}
@@ -168,7 +169,7 @@ className={`group rounded-2xl border border-white/10 bg-white/95 p-6 text-base-c
   </h3>
 
   <div
-    className={`mx-auto mt-5 h-1 rounded-full bg-[#F2C75C] transition-all duration-700 ${
+    className={`mx-auto mt-5 h-1 rounded-full bg-[#F0008B] transition-all duration-700 ${
       visible ? "w-32 opacity-100" : "w-0 opacity-0"
     }`}
     style={{ transitionDelay: "1750ms" }}

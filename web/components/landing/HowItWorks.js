@@ -194,8 +194,8 @@ export default function HowItWorks() {
         </div>
 
         <div className="mt-16 grid gap-8 rounded-3xl bg-[#5A0A22] p-6 text-white md:grid-cols-2 md:p-10">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#F2C75C]">
+          <div className="md:pt-4">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#E8D6C0]">
               Videos reales
             </p>
 
@@ -207,7 +207,7 @@ export default function HowItWorks() {
               Mira el armado, funcionamiento y pruebas reales del sistema.
             </p>
 
-            <div className="mt-6 flex items-center gap-2 text-[#F2C75C]">
+            <div className="mt-6 flex items-center gap-2 text-[#F0008B]">
               <PlayCircle className="size-5" />
 
               <span className="font-semibold">

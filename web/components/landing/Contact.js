@@ -159,13 +159,13 @@ useEffect(() => {
   className="pointer-events-none absolute -right-16 -top-16 size-48 rounded-full border border-[#F2C75C]/20"
   aria-hidden="true"
 />
-<p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#F2C75C]">
-              Canales directos
-            </p>
+<p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#E8D6C0]">
+  Canales directos
+</p>
 
-            <h3 className="mt-3 text-2xl font-bold">
-              Estamos para ayudarte
-            </h3>
+<h3 className="mt-3 text-2xl font-bold">
+  Estamos para ayudarte
+</h3>
 
             <p className="mt-4 leading-7 text-white/80">
               ¿Prefieres atención directa? Escríbenos por WhatsApp.
@@ -183,7 +183,7 @@ useEffect(() => {
 
             <div className="relative z-10 mt-8 space-y-3">
              <div className="rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10">
-           <Mail className="mt-0.5 size-5 text-[#F2C75C]" />
+           <Mail className="mt-0.5 size-5 text-[#E8D6C0]" />
           <div>
           <p className="font-semibold">Correo electrónico</p>
          <a
@@ -195,7 +195,7 @@ useEffect(() => {
        </div>
       </div>
 <div className="rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10">
-  <Instagram className="mt-0.5 size-5 text-[#F2C75C]" />
+  <Instagram className="mt-0.5 size-5 text-[#E8D6C0]" />
   <div>
     <p className="font-semibold">Instagram</p>
     <a
@@ -210,7 +210,7 @@ useEffect(() => {
 </div>
 
 <div className="rounded-2xl border border-white/10 bg-white/5 p-4 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10">
-  <Send className="mt-0.5 size-5 text-[#F2C75C]" />
+  <Send className="mt-0.5 size-5 text-[#E8D6C0]" />
   <div>
     <p className="font-semibold">TikTok</p>
     <a
@@ -352,9 +352,9 @@ useEffect(() => {
                 />
               </div>
 
-              <button
+             <button
   type="submit"
-  className="btn btn-primary w-full md:w-auto"
+  className="btn border-none bg-[#F0008B] text-white hover:bg-[#D9007D] w-full md:w-auto"
   disabled={status === "loading"}
 >
   {status === "loading" ? "Enviando..." : "Solicitar información"}
